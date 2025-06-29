@@ -32,8 +32,8 @@ service-name/
 |---------|-----|--------|---------|
 | intent-processor | https://intent-processor-209579160014.us-central1.run.app | ✅ Live | Session 1 |
 | document-extractor | https://document-extractor-209579160014.us-central1.run.app | ✅ Live | Session 2 |
-| compliance-validator | Pending | ⏳ | Session 2 |
-| orchestrator | Pending | ⏳ | Session 2 |
+| compliance-validator | ✅ Live | Session 2 | Session 2 |
+| orchestrator | ✅ Live | Session 2 | Session 2 |
 
 ## ❌ Patterns to Avoid
 
@@ -159,3 +159,12 @@ To avoid the `__name__` corruption issue, use the helper script:
 ---
 
 *Last Updated: Session 2 - Document Extractor Deployed*
+### 5. Field Name Mismatches
+**Problem**: Services may expect different field names
+**Example**: Intent processor expected `user_input` but orchestrator sent `query`
+**Solution**: Always verify field names match between services
+
+**Session 2 Updates**:
+- All 4 services successfully deployed
+- Complete pipeline tested and working
+- Lead Paint Disclosure correctly triggers for pre-1978 properties
