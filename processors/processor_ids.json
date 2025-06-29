@@ -1,0 +1,26 @@
+{
+  "RealeAgent Lead Paint Disclosure": {
+    "id": "9de800b942d80f79",
+    "full_name": "projects/209579160014/locations/us/processors/9de800b942d80f79",
+    "type": "CUSTOM_EXTRACTION_PROCESSOR",
+    "description": "Extract fields from Lead-Based Paint Disclosure forms"
+  },
+  "RealeAgent CA RPA": {
+    "id": "2d7566c3aec1205f",
+    "full_name": "projects/209579160014/locations/us/processors/2d7566c3aec1205f",
+    "type": "CUSTOM_EXTRACTION_PROCESSOR",
+    "description": "Extract fields from California Residential Purchase Agreement"
+  },
+  "RealeAgent BIA": {
+    "id": "65fb7aab83dd5495",
+    "full_name": "projects/209579160014/locations/us/processors/65fb7aab83dd5495",
+    "type": "CUSTOM_EXTRACTION_PROCESSOR",
+    "description": "Extract fields from Buyer's Inspection Advisory"
+  },
+  "RealeAgent Form Parser": {
+    "id": "9de800b942d80ad1",
+    "full_name": "projects/209579160014/locations/us/processors/9de800b942d80ad1",
+    "type": "FORM_PARSER_PROCESSOR",
+    "description": "General form parsing for other CAR forms"
+  }
+}

@@ -1,0 +1,34 @@
+# Cloud Build configuration for RealeAgent services
+steps:
+  # Build intent-processor
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['build', '-t', 'us-central1-docker.pkg.dev/${PROJECT_ID}/realeagent-containers/intent-processor:${SHORT_SHA}', './services/intent-processor']
+    id: 'build-intent-processor'
+
+  # Push intent-processor
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['push', 'us-central1-docker.pkg.dev/${PROJECT_ID}/realeagent-containers/intent-processor:${SHORT_SHA}']
+    id: 'push-intent-processor'
+    waitFor: ['build-intent-processor']
+
+  # Deploy to Cloud Run
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+    entrypoint: 'gcloud'
+    args:
+      - 'run'
+      - 'deploy'
+      - 'intent-processor'
+      - '--image=us-central1-docker.pkg.dev/${PROJECT_ID}/realeagent-containers/intent-processor:${SHORT_SHA}'
+      - '--region=us-central1'
+      - '--platform=managed'
+      - '--allow-unauthenticated'
+      - '--service-account=vertex-ai-pipeline@${PROJECT_ID}.iam.gserviceaccount.com'
+      - '--set-env-vars=PROJECT_ID=${PROJECT_ID},REGION=us-central1'
+    id: 'deploy-intent-processor'
+    waitFor: ['push-intent-processor']
+
+images:
+  - 'us-central1-docker.pkg.dev/${PROJECT_ID}/realeagent-containers/intent-processor:${SHORT_SHA}'
+
+options:
+  logging: CLOUD_LOGGING_ONLY
